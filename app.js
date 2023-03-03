@@ -1,10 +1,15 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
+var cors = require('cors')
 
 const app = express();
 
 app.use(cookieParser());
+app.use(cors({ 
+  origin: "frontend_URL", 
+  credentials: true 
+ }));
 
 dotenv.config({ path: "./config.env" });
 require("./db/conn.js");

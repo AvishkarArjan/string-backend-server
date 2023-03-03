@@ -13,9 +13,15 @@ const authenEmp = require("../middleware/authenEmp");
 const bodyParser = require("body-parser");
 const BASE_URL_ADMIN = process.env.BASE_URL_ADMIN
 const BASE_URL_EMP = process.env.BASE_URL_EMP
+var cors = require('cors')
+
 
 router.use(cookieParser());
 router.use(bodyParser.json());
+router.use(cors({ 
+  origin: "frontend_URL", 
+  credentials: true 
+ }));
 
 require("../db/conn.js");
 const User = require("../model/userSchema.js");
