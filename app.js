@@ -56,5 +56,5 @@ app.get("/admin", (req, res) => {
   });
 
 app.listen(PORT, () => {
-  console.log(`server is running at 5000`);
+  console.log(`server is running at ${PORT}`);
 });
