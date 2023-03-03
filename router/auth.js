@@ -216,7 +216,7 @@ router.get("/logout", (req, res) => {
 //   res.send(req.rootUser);
 // });
 
-router.get("/admin", authenticate, (req, res) => {
+router.get("https://string-backend-server.onrender.com/admin", authenticate, (req, res) => {
   Work.find({}, (err, data) => {
     if (err) {
       res.status(500).send(err.message);
