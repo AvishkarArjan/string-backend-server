@@ -54,7 +54,7 @@ router.get('/', (req,res)=>{
 
 
 
-router.post("https://string-backend-server.onrender.com/admin/employees", authenticate, async (req, res) => {
+router.post("/admin/employees", authenticate, async (req, res) => {
   const { _id, name, email,email_acc, phone, password, cpassword, requestType, profile } =
     req.body;
   // console.log(req.body);
@@ -163,7 +163,7 @@ router.post("https://string-backend-server.onrender.com/admin/employees", authen
 
 // Login Route
 
-router.post("https://string-backend-server.onrender.com/login", async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     let token;
     const { email, password } = req.body;
@@ -203,7 +203,7 @@ router.post("https://string-backend-server.onrender.com/login", async (req, res)
   }
 });
 
-router.get("https://string-backend-server.onrender.com/logout", (req, res) => {
+router.get("/logout", (req, res) => {
   // console.log("logout page");
   res.clearCookie("jwtoken", { path: "/" });
   res.status(200).send("user lougout");
@@ -216,7 +216,7 @@ router.get("https://string-backend-server.onrender.com/logout", (req, res) => {
 //   res.send(req.rootUser);
 // });
 
-router.get("https://string-backend-server.onrender.com/admin", authenticate, (req, res) => {
+router.get("/admin", authenticate, (req, res) => {
   Work.find({}, (err, data) => {
     if (err) {
       res.status(500).send(err.message);
@@ -232,7 +232,7 @@ router.get("https://string-backend-server.onrender.com/admin", authenticate, (re
   });
 });
 
-router.post("https://string-backend-server.onrender.com/admin", authenticate, async (req, res) => {
+router.post("/admin", authenticate, async (req, res) => {
   const {
     title,
     roughCut,
@@ -1117,7 +1117,7 @@ router.post("https://string-backend-server.onrender.com/admin", authenticate, as
   }
 });
 
-router.post("https://string-backend-server.onrender.com/admin/leaves", authenticate, async (req, res) => {
+router.post("/admin/leaves", authenticate, async (req, res) => {
   const { _id, approval } = req.body;
   try {
     const leaveExists = await Leave.findOne({_id:_id})
@@ -1173,7 +1173,7 @@ router.post("https://string-backend-server.onrender.com/admin/leaves", authentic
   }
 });
 
-router.post("https://string-backend-server.onrender.com/employee", authenEmp, async (req, res) => {
+router.post("/employee", authenEmp, async (req, res) => {
   try {
     const {
       title,
@@ -1528,7 +1528,7 @@ router.post("https://string-backend-server.onrender.com/employee", authenEmp, as
   }
 });
 
-router.get("https://string-backend-server.onrender.com/employee/completedprojects", authenEmp, async (req, res) => {
+router.get("/employee/completedprojects", authenEmp, async (req, res) => {
   const token = req.cookies.jwtoken;
   const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
   const empUser = await User.findOne({
@@ -1546,7 +1546,7 @@ router.get("https://string-backend-server.onrender.com/employee/completedproject
   });
 });
 
-router.get("https://string-backend-server.onrender.com/employee", authenEmp, async (req, res) => {
+router.get("/employee", authenEmp, async (req, res) => {
   try {
     let projectArr = [];
     let workArr = [];
@@ -1600,7 +1600,7 @@ router.get("https://string-backend-server.onrender.com/employee", authenEmp, asy
   }
 });
 
-router.get("https://string-backend-server.onrender.com/admin/employees", authenticate, async (req, res) => {
+router.get("/admin/employees", authenticate, async (req, res) => {
   User.find({}, async (err, data) => {
     if (err) {
       res.status(500).send(err.message);
@@ -1611,7 +1611,7 @@ router.get("https://string-backend-server.onrender.com/admin/employees", authent
   // res.send(`employees StringBackend`);
 });
 
-router.get("https://string-backend-server.onrender.com/admin/projects", authenticate, async (req, res) => {
+router.get("/admin/projects", authenticate, async (req, res) => {
   Project.find({}, (err, data) => {
     if (err) {
       res.status(500).send(err.message);
@@ -1621,7 +1621,7 @@ router.get("https://string-backend-server.onrender.com/admin/projects", authenti
   });
 });
 
-router.get("https://string-backend-server.onrender.com/admin/allprojects", authenticate, (req, res) => {
+router.get("/admin/allprojects", authenticate, (req, res) => {
   Project.find({}, (err, data) => {
     if (err) {
       res.status(500).send(err.message);
@@ -1631,7 +1631,7 @@ router.get("https://string-backend-server.onrender.com/admin/allprojects", authe
   });
 });
 
-router.post("https://string-backend-server.onrender.com/admin/allprojects", authenticate, async (req, res) => {
+router.post("/admin/allprojects", authenticate, async (req, res) => {
   const requestType = req.body.requestType;
 
   if (requestType === "delete") {
@@ -1721,7 +1721,7 @@ router.post("https://string-backend-server.onrender.com/admin/allprojects", auth
 //   }
 // })
 
-router.get("https://string-backend-server.onrender.com/admin/createproject", authenticate, (req, res) => {
+router.get("/admin/createproject", authenticate, (req, res) => {
   User.find({}, (err, data) => {
     if (err) {
       res.status(500).send(err.message);
@@ -1735,7 +1735,7 @@ router.get("https://string-backend-server.onrender.com/admin/createproject", aut
 //   const {compName,folderPath,backupFolder,file,revScript,completedCuts,remarks} = req.body;
 // })
 
-router.post("https://string-backend-server.onrender.com/admin/createproject", authenticate, async (req, res) => {
+router.post("/admin/createproject", authenticate, async (req, res) => {
   const {
     title,
     editor,
@@ -1816,7 +1816,7 @@ router.post("https://string-backend-server.onrender.com/admin/createproject", au
   }
 });
 
-router.post("https://string-backend-server.onrender.com/change-password", async (req, res) => {
+router.post("/change-password", async (req, res) => {
   let data = await Otp.find({
     stringEmail: req.body.stringEmail,
     code: req.body.otpCode,
@@ -1856,7 +1856,7 @@ router.post("https://string-backend-server.onrender.com/change-password", async 
   }
 });
 
-router.get("https://string-backend-server.onrender.com/employee/leaves", authenEmp, async (req, res) => {
+router.get("/employee/leaves", authenEmp, async (req, res) => {
   const token = req.cookies.jwtoken;
   const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
   const empUser = await User.findOne({
@@ -1873,7 +1873,7 @@ router.get("https://string-backend-server.onrender.com/employee/leaves", authenE
     }
   });
 });
-router.post("https://string-backend-server.onrender.com/employee/leaves", authenEmp, async (req, res) => {
+router.post("/employee/leaves", authenEmp, async (req, res) => {
   const { startDate, endDate, reason, approval } = req.body;
   const token = req.cookies.jwtoken;
   const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
@@ -1940,7 +1940,7 @@ router.post("https://string-backend-server.onrender.com/employee/leaves", authen
   }
 });
 
-router.get("https://string-backend-server.onrender.com/admin/leaves", authenticate, (req, res) => {
+router.get("/admin/leaves", authenticate, (req, res) => {
   Leave.find({}, (err, data) => {
     if (err) {
       res.status(500).send(err.message);
@@ -1950,7 +1950,7 @@ router.get("https://string-backend-server.onrender.com/admin/leaves", authentica
   });
 });
 
-router.get("https://string-backend-server.onrender.com/admin/calendar", authenticate, (req, res) => {
+router.get("/admin/calendar", authenticate, (req, res) => {
   Event.find({}, (err, data) => {
     if (err) {
       res.status(500).json({ error: err.message });
@@ -1960,7 +1960,7 @@ router.get("https://string-backend-server.onrender.com/admin/calendar", authenti
   });
 });
 
-router.get("https://string-backend-server.onrender.com/employee/calendar", authenEmp, (req, res) => {
+router.get("/employee/calendar", authenEmp, (req, res) => {
   Event.find({}, (err, data) => {
     if (err) {
       res.status(500).json({ error: err.message });
@@ -1970,7 +1970,7 @@ router.get("https://string-backend-server.onrender.com/employee/calendar", authe
   });
 });
 
-router.post("https://string-backend-server.onrender.com/admin/calendar", authenticate, async (req, res) => {
+router.post("/admin/calendar", authenticate, async (req, res) => {
   const { title, start, end, delEvent } = req.body;
   const token = req.cookies.jwtoken;
   const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
@@ -2020,7 +2020,7 @@ router.post("https://string-backend-server.onrender.com/admin/calendar", authent
   }
 });
 
-router.post("https://string-backend-server.onrender.com/send-email", async (req, res) => {
+router.post("/send-email", async (req, res) => {
   let data = await User.findOne({ username: req.body.stringEmail });
   if (data) {
     let otpcode = Math.floor(Math.random() * 10000 + 1);
