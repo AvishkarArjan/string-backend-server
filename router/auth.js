@@ -18,10 +18,7 @@ var cors = require('cors')
 
 router.use(cookieParser());
 router.use(bodyParser.json());
-router.use(cors({ 
-  origin: "https://stringbackend.in", 
-  credentials: true 
- }));
+router.use(cors());
 
 require("../db/conn.js");
 const User = require("../model/userSchema.js");
