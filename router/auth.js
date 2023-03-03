@@ -19,7 +19,7 @@ var cors = require('cors')
 router.use(cookieParser());
 router.use(bodyParser.json());
 router.use(cors({ 
-  origin: "frontend_URL", 
+  origin: "https://stringbackend.in", 
   credentials: true 
  }));
 

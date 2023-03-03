@@ -7,7 +7,7 @@ const app = express();
 
 app.use(cookieParser());
 app.use(cors({ 
-  origin: "frontend_URL", 
+  origin: "https://stringbackend.in", 
   credentials: true 
  }));
 
