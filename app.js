@@ -6,7 +6,9 @@ var cors = require('cors')
 const app = express();
 
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+  origin:"https://stringbackend.in"
+}));
 
 dotenv.config({ path: "./config.env" });
 require("./db/conn.js");

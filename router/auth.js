@@ -18,7 +18,9 @@ var cors = require('cors')
 
 router.use(cookieParser());
 router.use(bodyParser.json());
-router.use(cors());
+router.use(cors({
+  origin:"https://stringbackend.in"
+}));
 
 require("../db/conn.js");
 const User = require("../model/userSchema.js");
@@ -1605,6 +1607,7 @@ router.get("/admin/employees", authenticate, async (req, res) => {
     if (err) {
       res.status(500).send(err.message);
     } else {
+      console.log(data);
       res.status(200).send(data);
     }
   });
