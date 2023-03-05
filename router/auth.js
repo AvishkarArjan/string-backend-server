@@ -189,7 +189,6 @@ router.post("/login", async (req, res) => {
       res.cookie("jwtoken", token),
         {
           expires: new Date(Date.now() + 258920000000), // 300 days
-          httpOnly: false,
         };
 
       if (!isMatch) {
