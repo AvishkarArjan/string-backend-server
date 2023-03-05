@@ -184,7 +184,7 @@ router.post("/login", async (req, res) => {
       // adding JWT - json web token
 
       token = await userLogin.generateAuthToken();
-      // console.log(token);
+      console.log(token);
       // adding cookies
       res.cookie("jwtoken", token),
         {
