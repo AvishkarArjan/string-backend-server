@@ -6,7 +6,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 
 const app = express();
-
+app.set('trust proxy', 1)
 app.use(cookieParser());
 app.use(cors({
   origin:"https://stringbackend.in",
