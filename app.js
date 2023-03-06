@@ -2,13 +2,24 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 var cors = require('cors')
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
 
 const app = express();
 
 app.use(cookieParser());
 app.use(cors({
-  origin:"https://stringbackend.in"
+  origin:"http://localhost:3000",
+  credentials:true
 }));
+// app.use(
+//       '/',
+//       createProxyMiddleware({
+//         target: 'http://localhost:5000',
+//         changeOrigin: true,
+//       })
+//     );
+
 
 dotenv.config({ path: "./config.env" });
 require("./db/conn.js");
@@ -51,7 +62,7 @@ app.get("/admin/employees", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  res.send(`login StringBackend`);
+  res.send(`login String Backend`);
 });
 
 app.get("/admin", (req, res) => {

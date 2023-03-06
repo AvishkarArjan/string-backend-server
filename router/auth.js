@@ -14,13 +14,25 @@ const bodyParser = require("body-parser");
 const BASE_URL_ADMIN = process.env.BASE_URL_ADMIN
 const BASE_URL_EMP = process.env.BASE_URL_EMP
 var cors = require('cors')
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
+
 
 
 router.use(cookieParser());
 router.use(bodyParser.json());
 router.use(cors({
-  origin:"https://stringbackend.in"
+  origin:true,
+  credentials:true
 }));
+// router.use(
+//   '/',
+//   createProxyMiddleware({
+//     target: 'http://localhost:5000',
+//     changeOrigin: true,
+//   })
+// );
+
 
 require("../db/conn.js");
 const User = require("../model/userSchema.js");
@@ -184,11 +196,11 @@ router.post("/login", async (req, res) => {
       // adding JWT - json web token
 
       token = await userLogin.generateAuthToken();
-      console.log(token);
       // adding cookies
       res.cookie("jwtoken", token),
         {
           expires: new Date(Date.now() + 258920000000), // 300 days
+          httpOnly: false,
         };
 
       if (!isMatch) {
@@ -1602,11 +1614,12 @@ router.get("/employee", authenEmp, async (req, res) => {
 });
 
 router.get("/admin/employees", authenticate, async (req, res) => {
+  // console.log(req.cookies,"<---cookies")
   User.find({}, async (err, data) => {
     if (err) {
       res.status(500).send(err.message);
     } else {
-      console.log(data);
+      // console.log(data);
       res.status(200).send(data);
     }
   });
@@ -1841,6 +1854,7 @@ router.post("/change-password", async (req, res) => {
         name: user.name,
         email: user.email,
         phone: user.phone,
+        email_acc:user.email_acc,
         password: req.body.password,
         cpassword: req.body.cpassword,
       });
