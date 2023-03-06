@@ -179,9 +179,10 @@ router.post("/admin/employees", authenticate, async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
+    res.setHeader('Set-Cookie', 'isLoggedin=true', 'SameSite=None');
     let token;
     const { email, password } = req.body;
-
+    
     if (!email || !password) {
       return res.status(400).json({ error: "One or more field missing" });
     }
