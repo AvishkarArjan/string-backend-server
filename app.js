@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 var cors = require('cors')
 const { createProxyMiddleware } = require('http-proxy-middleware');
-
+var cookieSession = require("cookie-session");
 
 const app = express();
 app.set('trust proxy', 1)
