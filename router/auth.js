@@ -15,11 +15,12 @@ const BASE_URL_ADMIN = process.env.BASE_URL_ADMIN
 const BASE_URL_EMP = process.env.BASE_URL_EMP
 var cors = require('cors')
 const { createProxyMiddleware } = require('http-proxy-middleware');
-
+import { sameSiteCookieMiddleware } from 'express-samesite-default';
 
 
 
 router.use(cookieParser());
+app.use(sameSiteCookieMiddleware());
 router.use(bodyParser.json());
 router.use(cors({
   origin:true,
