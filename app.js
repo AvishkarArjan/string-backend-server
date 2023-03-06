@@ -10,6 +10,16 @@ const app = express();
 app.set('trust proxy', 1)
 app.use(cookieParser());
 app.use(sameSiteCookieMiddleware());
+app.use(
+  cookieSession({
+    name: "__session",
+    keys: ["key1"],
+      maxAge: 1000*3600*24*30*100,
+      secure: true,
+      httpOnly: false,
+      SameSite: 'none'
+  })
+);
 app.use(cors({
   origin:"https://stringbackend.in",
   credentials:true
