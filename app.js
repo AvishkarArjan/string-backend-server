@@ -3,13 +3,11 @@ const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 var cors = require('cors')
 const { createProxyMiddleware } = require('http-proxy-middleware');
-import { sameSiteCookieMiddleware } from 'express-samesite-default';
 
 
 const app = express();
 app.set('trust proxy', 1)
 app.use(cookieParser());
-app.use(sameSiteCookieMiddleware());
 app.use(
   cookieSession({
     name: "__session",
