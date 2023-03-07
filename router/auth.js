@@ -198,13 +198,13 @@ router.post("/login", async (req, res) => {
 
       token = await userLogin.generateAuthToken();
       // adding cookies
-      res.cookie("jwtoken", token),
-        {
-          expires: new Date(Date.now() + 258920000000), // 300 days
-          httpOnly: false,
-          sameSite: 'none',
-          secure: true,
-        };
+      res.cookie("jwtoken", token,{
+        expires: new Date(Date.now() + 258920000000), // 300 days
+        httpOnly: false,
+        sameSite: 'none',
+        secure: true,
+      })
+        
 
       if (!isMatch) {
         res.status(400).json({ error: "Invalid credentials" });
