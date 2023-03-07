@@ -178,7 +178,8 @@ router.post("/admin/employees", authenticate, async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-    res.setHeader('Set-Cookie', 'isLoggedin=true; SameSite=None');
+    res.setHeader('Set-Cookie', 'isLoggedin=true; SameSite=None; Secure;');
+    
     let token;
     const { email, password } = req.body;
     
