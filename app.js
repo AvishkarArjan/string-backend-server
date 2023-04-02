@@ -2,7 +2,6 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 var cors = require('cors')
-const { createProxyMiddleware } = require('http-proxy-middleware');
 var cookieSession = require("cookie-session");
 
 const app = express();
@@ -19,17 +18,9 @@ app.use(
   })
 );
 app.use(cors({
-  origin:"https://stringbackend.in",
+  origin:"http://localhost:3000", // change to stringbackend.in
   credentials:true
 }));
-// app.use(
-//       '/',
-//       createProxyMiddleware({
-//         target: 'http://localhost:5000',
-//         changeOrigin: true,
-//       })
-//     );
-
 
 
 dotenv.config({ path: "./config.env" });
@@ -41,14 +32,6 @@ const PORT = process.env.PORT;
 
 app.use(require("./router/auth.js"));
 
-// const middleware = (req, res, next) => {
-//   console.log(`middlewareee`);
-//   next();
-// };
-
-// app.get("/", (req, res) => {
-//   res.send(`Hello world from server - app.js`);
-// });
 
 app.get("/admin/projects", (req, res) => {
   res.send(`string backend project`);
