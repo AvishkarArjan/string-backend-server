@@ -14,7 +14,6 @@ const bodyParser = require("body-parser");
 const BASE_URL_ADMIN = process.env.BASE_URL_ADMIN
 const BASE_URL_EMP = process.env.BASE_URL_EMP
 var cors = require('cors')
-const { createProxyMiddleware } = require('http-proxy-middleware');
 
 
 
@@ -24,14 +23,6 @@ router.use(cors({
   origin:true,
   credentials:true
 }));
-// router.use(
-//   '/',
-//   createProxyMiddleware({
-//     target: 'http://localhost:5000',
-//     changeOrigin: true,
-//   })
-// );
-
 
 require("../db/conn.js");
 const User = require("../model/userSchema.js");
