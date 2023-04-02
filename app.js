@@ -18,7 +18,7 @@ app.use(
   })
 );
 app.use(cors({
-  origin:"http://localhost:3000", // change to stringbackend.in
+  origin:"http://stringbackend.in", // change to stringbackend.in
   credentials:true
 }));
 
