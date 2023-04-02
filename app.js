@@ -22,6 +22,10 @@ app.use(cors({
   credentials:true
 }));
 
+app.use(compression({
+  level:6,
+  threshold:0,
+}))
 
 dotenv.config({ path: "./config.env" });
 require("./db/conn.js");
