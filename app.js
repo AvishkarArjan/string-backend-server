@@ -18,7 +18,7 @@ app.use(
   })
 );
 app.use(cors({
-  origin:"http://stringbackend.in", // change to stringbackend.in
+  origin:"https://stringbackend.in", // change to stringbackend.in
   credentials:true
 }));
 
